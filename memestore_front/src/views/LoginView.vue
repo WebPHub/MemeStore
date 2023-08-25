@@ -41,7 +41,8 @@
     import LoginNav from "@/components/LoginNav.vue";
 
     const checkLogin = () => {
-        window.location.href = "/main";
+            
+        window.location.href = "/v/main";
     };
 </script>
 

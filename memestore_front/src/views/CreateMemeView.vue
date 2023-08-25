@@ -1,5 +1,5 @@
 <template>
-    <LoginNav />
+    <LogoutNav />
     <div id="selectModal" class="modal is-open">
         <div class="modal-background" />
         <div class="modal-content">
@@ -153,7 +153,7 @@
 </template>
 
 <script setup>
-    import LoginNav from "@/components/LoginNav.vue";
+    import LogoutNav from "@/components/LogoutNav.vue";
     import axios from "axios";
     import html2canvas from "html2canvas";
     import { ref, onMounted } from "vue";

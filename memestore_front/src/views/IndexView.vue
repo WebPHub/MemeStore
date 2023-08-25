@@ -42,7 +42,7 @@
     <div class="container">
         <div class="columns">
             <div class="column">
-                <figure class="image is-150x150">
+                <figure class="image is-square">
                     <img
                         src="https://i.pinimg.com/originals/f5/73/12/f57312adca2f5c9c50037bb743709990.jpg"
                         alt="이미지 1"
@@ -50,7 +50,7 @@
                 </figure>
             </div>
             <div class="column">
-                <figure class="image is-150x150">
+                <figure class="image s-square">
                     <img
                         src="https://i.pinimg.com/originals/8e/0d/99/8e0d99336b486c4f8b2a9e81735aee93.jpg"
                         alt="이미지 2"
@@ -58,7 +58,7 @@
                 </figure>
             </div>
             <div class="column">
-                <figure class="image is-150x150">
+                <figure class="image is-square">
                     <img
                         src="https://i.pinimg.com/originals/4a/6b/c5/4a6bc50e3a1fc78c255697e821fd1930.jpg"
                         alt="이미지 3"
@@ -67,22 +67,23 @@
             </div>
         </div>
     </div>
-    <hr />
     <!-- 웹 제공서비스 소개 -->
-    <div class="content is-normal has-text-centered">
-        <p class="has-text-link has-text-weight-bold is-size-2">Meme Store</p>
-        <p>
-            자기주도적 MZ세대의 필수 트렌드 마케팅! <br />
-            자신의 개성을 드러내는 MZ세대의 욕망! <br />
-            대중과 공유하며 전국적·세계적으로 확산!
-            <br />
-        </p>
-        <ul style="display: inline-block; text-align: left">
-            <li>50+ 무료 템플릿 제공</li>
-            <li>자신의 개성에 맞는 폰트 디자인까지</li>
-            <li>쉽고 간편한 밈 커스터마이징</li>
-            <li>월간 추천수를 통계하여 소정의 상품 제공</li>
-        </ul>
+    <div class="content is-normal has-text-centered" style="height: 500px; display: flex">
+        <div style="margin: auto">
+            <p class="has-text-link has-text-weight-bold is-size-2">Meme Store</p>
+            <p>
+                자기주도적 MZ세대의 필수 트렌드 마케팅! <br />
+                자신의 개성을 드러내는 MZ세대의 욕망! <br />
+                대중과 공유하며 전국적·세계적으로 확산!
+                <br />
+            </p>
+            <ul style="display: inline-block; text-align: left">
+                <li>50+ 무료 템플릿 제공</li>
+                <li>자신의 개성에 맞는 폰트 디자인까지</li>
+                <li>쉽고 간편한 밈 커스터마이징</li>
+                <li>월간 추천수를 통계하여 소정의 상품 제공</li>
+            </ul>
+        </div>
     </div>
 
     <!-- 웹 제공서비스 소개 2 -->
