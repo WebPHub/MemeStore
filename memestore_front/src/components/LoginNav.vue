@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="/">
+            <a class="navbar-item" href="/v/home/">
                 <img src="../assets/memestore_logo.png" width="100" height="40" />
             </a>
 
@@ -40,10 +40,10 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-light" href="/signup">
+                        <a class="button is-light" href="/v/signup">
                             <strong>Sign up</strong>
                         </a>
-                        <a class="button has-background-link is-primary" href="/login">Log In</a>
+                        <a class="button has-background-link is-primary" href="/v/login">Log In</a>
                     </div>
                 </div>
             </div>

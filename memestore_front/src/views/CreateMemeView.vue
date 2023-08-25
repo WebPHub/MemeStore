@@ -654,7 +654,32 @@
             //blob 형태로 전환
             let myImg = canvas.toDataURL("image/png");
             myImg = myImg.replace("data:image/png;base64,", "");
-            // console.log(myImg);
+
+            //이미지 저장
+            let data = {
+                memberId: localStorage.getItem("username"),
+                img: myImg,
+                title: userInputTitle,
+            };
+
+            axios
+                .post("/memeimg/new", data, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                .then((response) => {
+                    console.log(response);
+                    if (response.data.msg != undefined) {
+                        alert(response.data.msg);
+                        return;
+                    }
+                    alert("이미지 저장이 완료되었습니다!");
+                    window.location.href = "/v/main";
+                })
+                .catch((error) => {
+                    alert(error);
+                });
         });
     };
 </script>

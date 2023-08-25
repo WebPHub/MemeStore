@@ -40,12 +40,4 @@ public class JpaMemberRepository implements MemberRepository{
         return em.createQuery("select m from Member m", Member.class)
                 .getResultList();
     }
-
-//    public Member login(String name, String password) {
-//        Optional<Member> findMember = JpaMemberRepository.findByName(name);
-//        if(!findMember.orElseThrow(()->new NotCorrespondingNameException("해당 아이디가 존재하지 않습니다.")).checkPassword(password)){
-//            throw new IllegalStateException("아이디와 비밀번호가 일치하지 않습니다.");
-//        }
-//        return findMember.get();
-//    }
 }

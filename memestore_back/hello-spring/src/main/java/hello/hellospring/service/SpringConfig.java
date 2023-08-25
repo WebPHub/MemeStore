@@ -47,6 +47,11 @@ public class SpringConfig implements WebMvcConfigurer {
         return new JpaImgRepository(em);
     }
 
+    @Bean
+    public LikeRepository likeRepository() {
+        return new JpaLikeRepository(em);
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
       registry.addResourceHandler("/v/**/*")

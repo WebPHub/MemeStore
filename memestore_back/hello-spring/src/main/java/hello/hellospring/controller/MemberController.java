@@ -14,8 +14,9 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    @ResponseBody
     @PostMapping("/members/new")
-    public Object create(MemberForm form){
+    public Object create(@RequestBody MemberForm form){
         Member member = new Member();
         member.setName(form.getName());
         member.setPassword(form.getPassword());
@@ -28,8 +29,9 @@ public class MemberController {
         return new MyMessage("아이디가 중복되었습니다.");
     }
 
+    @ResponseBody
     @PostMapping("/members/login")
-    public Object login(MemberForm form){
+    public Object login(@RequestBody MemberForm form){
         Member member = new Member();
         member.setName(form.getName());
         member.setPassword(form.getPassword());

@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="/main">
+            <a class="navbar-item" href="/v/main">
                 <img src="../assets/memestore_logo.png" width="100" height="40" />
             </a>
 
@@ -39,14 +39,19 @@
 
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button has-background-link is-primary" href="/"> Log Out </a>
-                    </div>
+                    <button class="button has-background-link is-primary" @click="removeUserData()">Log Out</button>
                 </div>
             </div>
         </div>
     </nav>
 </template>
+
+<script setup>
+    const removeUserData = () => {
+        localStorage.removeItem("username");
+        window.location.href = "/v/home";
+    };
+</script>
 
 <style lang="scss">
     @import "../../node_modules/bulma/bulma.sass";

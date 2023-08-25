@@ -7,7 +7,7 @@ import javax.persistence.Column;
 public class ImgForm {
 
     private Long memberid;
-    private MultipartFile img;
+    private byte[] img;
     private String title;
 
     public Long getMemberid() {
@@ -18,11 +18,11 @@ public class ImgForm {
         this.memberid = memberid;
     }
 
-    public MultipartFile getImg() {
+    public byte[] getImg() {
         return img;
     }
 
-    public void setImg(MultipartFile img) {
+    public void setImg(byte[] img) {
         this.img = img;
     }
 
