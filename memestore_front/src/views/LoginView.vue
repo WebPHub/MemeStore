@@ -66,7 +66,7 @@
                 }
 
                 let user = response.data;
-                localStorage.setItem("username", user.name);
+                localStorage.setItem("userid", user.id);
                 window.location.href = "/v/main";
             })
             .catch((error) => {

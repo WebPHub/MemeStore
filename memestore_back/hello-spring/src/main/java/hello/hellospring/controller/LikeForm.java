@@ -1,20 +1,9 @@
 package hello.hellospring.controller;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class LikeForm {
 
-    private Long id;
     private Long memberid;
     private Long imgid;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getMemberid() {
         return memberid;

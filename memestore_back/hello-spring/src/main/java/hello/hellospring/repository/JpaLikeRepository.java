@@ -21,16 +21,15 @@ public class JpaLikeRepository implements LikeRepository{
 
     @Override
     public LikeMeme findByMemberImgId(Long memberid, Long imgId) {
-        LikeMeme result = em.createQuery("select m from LikeMeme m inner join Member me on m.memberId = :memberid " +
-        "inner join MemeImg img on m.imgId =:imgid" +
-        "where m.memberid = :memberid", LikeMeme.class)
+        List<LikeMeme> result = em.createQuery("select m from LikeMeme m " +
+        "where m.memberid = :memberid and m.imgid = :imgid", LikeMeme.class)
                 .setParameter("memberid", memberid)
                 .setParameter("imgid", imgId)
-                .getSingleResult();
-        return result;
+                .getResultList();
+
+        if(result.size() == 0) return new LikeMeme();
+        return result.get(0);
     }
-
-
 
     @Override
     public int delete(LikeMeme like) {
@@ -44,7 +43,7 @@ public class JpaLikeRepository implements LikeRepository{
     @Override
     public List<LikeMeme> findByMember(Long memberid) {
         List<LikeMeme> result = em.createQuery("select m from LikeMeme m where m.memberid = :memberid", LikeMeme.class)
-                .setParameter("imgid", memberid)
+                .setParameter("memberid", memberid)
                 .getResultList();
         return result;
     }

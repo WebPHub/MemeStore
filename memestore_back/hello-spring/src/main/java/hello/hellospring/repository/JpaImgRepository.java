@@ -28,8 +28,7 @@ public class JpaImgRepository implements ImgRepository{
 
     @Override
     public List<MemeImg> findByTitle(String title) {
-        List<MemeImg> result = em.createQuery("select m from MemeImg m where m.title = :title", MemeImg.class)
-                .setParameter("title", title)
+        List<MemeImg> result = em.createQuery("select m from MemeImg m where m.title like '%" + title + "%'", MemeImg.class)
                 .getResultList();
         return result;
     }

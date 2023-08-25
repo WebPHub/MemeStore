@@ -48,7 +48,7 @@
 
 <script setup>
     const removeUserData = () => {
-        localStorage.removeItem("username");
+        localStorage.removeItem("userid");
         window.location.href = "/v/home";
     };
 </script>

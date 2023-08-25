@@ -56,7 +56,7 @@
             <button class="button is-responsive" @click="addTextField()">텍스트 추가하기</button>
             <button class="button is-responsive" @click="saveMemeImage()">저장하기</button>
         </div>
-        <div class="box myfont">
+        <div class="box myfont" style="text-align: center">
             <div class="dropdown boxfontname" v-on:click="openCloseDropDown('boxfontname')">
                 <div class="dropdown-trigger">
                     <button
@@ -136,12 +136,14 @@
         <div id="drawncomponents" class="box">
             <div v-for="(k, i) in uploadedElements" :key="i">
                 <div class="columns">
-                    <span class="column is-four-fifths">{{ k }}</span>
-                    <div class="column">
-                        <button class="button" v-on:click="frontComponent(i)">앞으로</button>
+                    <div class="column is-three-quarters">
+                        {{ k }}
                     </div>
                     <div class="column">
-                        <button class="button" v-on:click="backComponent(i)">뒤로</button>
+                        <button class="button" v-on:click="frontComponent(i)">아래로</button>
+                    </div>
+                    <div class="column">
+                        <button class="button" v-on:click="backComponent(i)">위로</button>
                     </div>
                     <div class="column">
                         <button class="button is-danger" v-on:click="removeComponent(i)">지우기</button>
@@ -156,7 +158,8 @@
     import LogoutNav from "@/components/LogoutNav.vue";
     import axios from "axios";
     import html2canvas from "html2canvas";
-    import { ref, onMounted } from "vue";
+    import { ref, onMounted, setBlockTracking } from "vue";
+    import domtoimage from "dom-to-image";
 
     //그림판 Background 관련 변수
     let memePaint;
@@ -181,7 +184,8 @@
 
     //Unspalsh API 데이터 변수
     const accessKey = "Cx18IXqrM-Q0N_8X4fj-CvzsHouR-w0FEFeFvx_BlFY";
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    const proxyUrl = "";
     const apiUrl = "https://api.unsplash.com/";
 
     onMounted(() => {
@@ -239,8 +243,8 @@
         img.setAttribute("width", resultImg.width);
         img.setAttribute("height", resultImg.height);
         img.addEventListener("mousedown", (e) => {
-            addActiveObj(img);
             startDrag(e, img, 1);
+            addActiveObj(img);
         });
 
         uploadedElements.value.push("paintimg" + imgIdCount++);
@@ -550,9 +554,9 @@
 
     const setTextFieldColor = () => {
         let color = colorPickBtn.value;
-        if (targetObj != null) {
-            let targetObj = getTargetData(lastTextField);
-            targetObj.fontColor = color;
+        if (lastTextField != null) {
+            let targetTb = getTargetData(lastTextField);
+            targetTb.fontColor = color;
             changeTextFontStyle();
         }
     };
@@ -645,42 +649,85 @@
             alert("제목은 공백으로 둘 수 없습니다.");
             return;
         }
-        html2canvas(memePaint, {
-            useCORS: true,
-            allowTaint: true,
-        }).then((canvas) => {
-            //document.body.appendChild(canvas);
+        domtoimage
+            .toBlob(memePaint, {
+                style: {
+                    width: 900,
+                    height: 900,
+                },
+            })
+            .then((blob) => {
+                console.log(blob);
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    let myImg = event.target.result;
+                    myImg = myImg.replace("data:image/png;base64,", ""); //이미지 타입 제거
+                    myImg = myImg.replace(/\s/g, ""); //공백제거
 
-            //blob 형태로 전환
-            let myImg = canvas.toDataURL("image/png");
-            myImg = myImg.replace("data:image/png;base64,", "");
+                    //이미지 저장
+                    let data = {
+                        memberid: parseInt(localStorage.getItem("userid")),
+                        img: myImg,
+                        title: userInputTitle,
+                    };
 
-            //이미지 저장
-            let data = {
-                memberId: localStorage.getItem("username"),
-                img: myImg,
-                title: userInputTitle,
-            };
+                    axios
+                        .post("/memeimg/new", data, {
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        })
+                        .then((response) => {
+                            console.log(response);
+                            if (response.data.msg != undefined) {
+                                alert(response.data.msg);
+                                return;
+                            }
+                            alert("이미지 저장이 완료되었습니다!");
+                            window.location.href = "/v/main";
+                        })
+                        .catch((error) => {
+                            alert(error);
+                        });
+                };
+                reader.readAsDataURL(blob);
+            });
 
-            axios
-                .post("/memeimg/new", data, {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
-                .then((response) => {
-                    console.log(response);
-                    if (response.data.msg != undefined) {
-                        alert(response.data.msg);
-                        return;
-                    }
-                    alert("이미지 저장이 완료되었습니다!");
-                    window.location.href = "/v/main";
-                })
-                .catch((error) => {
-                    alert(error);
-                });
-        });
+        // html2canvas(memePaint, {
+        //     useCORS: true,
+        //     allowTaint: true,
+        // }).then((canvas) => {
+        //     //document.body.appendChild(canvas);
+        //     //blob 형태로 전환
+        //     let myImg = canvas.toDataURL("image/png");
+        //     myImg = myImg.replace("data:image/png;base64,", "");
+
+        //     //이미지 저장
+        //     let data = {
+        //         memberId: localStorage.getItem("username"),
+        //         img: myImg,
+        //         title: userInputTitle,
+        //     };
+
+        //     axios
+        //         .post("/memeimg/new", data, {
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //             },
+        //         })
+        //         .then((response) => {
+        //             console.log(response);
+        //             if (response.data.msg != undefined) {
+        //                 alert(response.data.msg);
+        //                 return;
+        //             }
+        //             alert("이미지 저장이 완료되었습니다!");
+        //             window.location.href = "/v/main";
+        //         })
+        //         .catch((error) => {
+        //             alert(error);
+        //         });
+        // });
     };
 </script>
 

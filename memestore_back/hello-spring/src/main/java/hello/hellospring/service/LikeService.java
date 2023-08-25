@@ -27,7 +27,7 @@ public class LikeService {
     }
 
     public Long join(LikeMeme like){
-        Long validateLike=validateDuplicateLike(like);
+        Long validateLike = validateDuplicateLike(like);
         if(validateLike != null){
             likeRepository.save(like);
             return like.getId();

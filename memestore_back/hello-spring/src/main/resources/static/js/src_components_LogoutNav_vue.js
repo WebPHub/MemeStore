@@ -15,7 +15,7 @@
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  __name: 'LogoutNav',\n  setup(__props, {\n    expose: __expose\n  }) {\n    __expose();\n    const removeUserData = () => {\n      localStorage.removeItem(\"username\");\n      window.location.href = \"/v/home\";\n    };\n    const __returned__ = {\n      removeUserData\n    };\n    Object.defineProperty(__returned__, '__isScriptSetup', {\n      enumerable: false,\n      value: true\n    });\n    return __returned__;\n  }\n});\n\n//# sourceURL=webpack://memestore_front/./src/components/LogoutNav.vue?./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use%5B0%5D!./node_modules/vue-loader/dist/index.js??ruleSet%5B0%5D.use%5B0%5D");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  __name: 'LogoutNav',\n  setup(__props, {\n    expose: __expose\n  }) {\n    __expose();\n    const removeUserData = () => {\n      localStorage.removeItem(\"userid\");\n      window.location.href = \"/v/home\";\n    };\n    const __returned__ = {\n      removeUserData\n    };\n    Object.defineProperty(__returned__, '__isScriptSetup', {\n      enumerable: false,\n      value: true\n    });\n    return __returned__;\n  }\n});\n\n//# sourceURL=webpack://memestore_front/./src/components/LogoutNav.vue?./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use%5B0%5D!./node_modules/vue-loader/dist/index.js??ruleSet%5B0%5D.use%5B0%5D");
 
 /***/ }),
 
