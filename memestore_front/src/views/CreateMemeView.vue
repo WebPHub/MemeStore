@@ -649,49 +649,41 @@
             alert("제목은 공백으로 둘 수 없습니다.");
             return;
         }
-        domtoimage
-            .toBlob(memePaint, {
-                style: {
-                    width: 900,
-                    height: 900,
-                },
-            })
-            .then((blob) => {
-                console.log(blob);
-                const reader = new FileReader();
-                reader.onload = function (event) {
-                    let myImg = event.target.result;
-                    myImg = myImg.replace("data:image/png;base64,", ""); //이미지 타입 제거
-                    myImg = myImg.replace(/\s/g, ""); //공백제거
+        domtoimage.toBlob(memePaintBg).then((blob) => {
+            // console.log(blob);
+            const reader = new FileReader();
+            reader.onloadend = function (event) {
+                let myImg = reader.result;
+                myImg = myImg.replace("data:image/png;base64,", ""); //이미지 타입 제거
 
-                    //이미지 저장
-                    let data = {
-                        memberid: parseInt(localStorage.getItem("userid")),
-                        img: myImg,
-                        title: userInputTitle,
-                    };
-
-                    axios
-                        .post("/memeimg/new", data, {
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        })
-                        .then((response) => {
-                            console.log(response);
-                            if (response.data.msg != undefined) {
-                                alert(response.data.msg);
-                                return;
-                            }
-                            alert("이미지 저장이 완료되었습니다!");
-                            window.location.href = "/v/main";
-                        })
-                        .catch((error) => {
-                            alert(error);
-                        });
+                //이미지 저장
+                let data = {
+                    memberid: parseInt(localStorage.getItem("userid")),
+                    img: myImg,
+                    title: userInputTitle,
                 };
-                reader.readAsDataURL(blob);
-            });
+
+                axios
+                    .post("/memeimg/new", data, {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    })
+                    .then((response) => {
+                        console.log(response);
+                        if (response.data.msg != undefined) {
+                            alert(response.data.msg);
+                            return;
+                        }
+                        alert("이미지 저장이 완료되었습니다!");
+                        window.location.href = "/v/main";
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    });
+            };
+            reader.readAsDataURL(blob);
+        });
 
         // html2canvas(memePaint, {
         //     useCORS: true,
@@ -783,7 +775,8 @@
         width: 100%;
         height: 1100px;
         position: relative;
-        background-color: lightgray;
+        background-color: white;
+        border: 1px solid black;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -792,7 +785,6 @@
     #memepaint {
         width: 900px;
         height: 900px;
-        background-color: white;
     }
 
     .user-paint {
