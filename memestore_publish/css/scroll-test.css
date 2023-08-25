@@ -1,0 +1,16 @@
+.vertical-scroll-main{
+    overflow: hidden auto;
+    scroll-snap-type: y mandatory;
+    width: 100vw;
+    height: 100vh;
+}
+
+.scroll-item {
+    scroll-snap-align: start;
+    min-width: 100%;
+    min-height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 50pt;
+}
