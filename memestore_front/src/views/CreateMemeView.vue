@@ -130,13 +130,13 @@
                 T
             </button>
 
-            <div id="alignleftBtn" class="button is-responsive" v-on:click="setTextAlign('left')">
+            <div id="alignleftBtn" class="button is-responsive" v-on:click="setTextClickAlign('left')">
                 <img src="../assets/align-left.png" class="is-square" />
             </div>
-            <div id="aligncenterBtn" class="button is-responsive" v-on:click="setTextAlign('center')">
+            <div id="aligncenterBtn" class="button is-responsive" v-on:click="setTextClickAlign('center')">
                 <img src="../assets/align-center.png" class="is-square" />
             </div>
-            <div id="alignrightBtn" class="button is-responsive" v-on:click="setTextAlign('right')">
+            <div id="alignrightBtn" class="button is-responsive" v-on:click="setTextClickAlign('right')">
                 <img src="../assets/align-right.png" class="is-square" />
             </div>
         </div>
@@ -287,7 +287,7 @@
         const objRect = targetObj.getBoundingClientRect();
         const rightBoundary = objRect.left + objRect.width;
         const bottomBoundary = objRect.top + objRect.height;
-        const boundPadding = 20;
+        const boundPadding = 15;
 
         if (targetKey == 1) {
             objStartWidth = targetObj.width;
@@ -468,6 +468,7 @@
 
     let textFieldList = [];
     let lastTextField;
+    let lastAlign = "left";
 
     //텍스트박스 추가
     const addTextField = () => {
@@ -483,7 +484,8 @@
         });
         textField.addEventListener("focusin", (e) => {
             lastTextField = textField;
-            setTextFontData(lastTextField);
+            setTextFontData(textField);
+            setTextAlign(textField);
         });
         textField.addEventListener("focusout", (e) => {
             textField.style.border = "0";
@@ -499,10 +501,11 @@
             fontSize: nowFontSize.value,
             fontColor: colorPickBtn.value,
             isStyleOn: [false, false, false],
-            textAlign: "left",
+            textAlign: lastAlign,
         });
         memePaint.appendChild(textField);
         textField.focus();
+        setTextClickAlign(lastAlign);
         changeTextFontStyle();
     };
 
@@ -572,11 +575,18 @@
         }
     };
 
-    const setTextAlign = (data) => {
+    const setTextAlign = (obj) => {
+        let targetTb = getTargetData(obj);
+        setTextClickAlign(targetTb.textAlign);
+    };
+
+    const setTextClickAlign = (data) => {
         //Bold, Italic, Under
-        setTextAlignBtn("left", data);
-        setTextAlignBtn("center", data);
-        setTextAlignBtn("right", data);
+        lastAlign = data;
+
+        setTextClickAlignBtn("left", data);
+        setTextClickAlignBtn("center", data);
+        setTextClickAlignBtn("right", data);
         if (lastTextField != null) {
             let targetTb = getTargetData(lastTextField);
             targetTb.textAlign = data;
@@ -584,7 +594,7 @@
         }
     };
 
-    const setTextAlignBtn = (type, val) => {
+    const setTextClickAlignBtn = (type, val) => {
         let btn = document.getElementById("align" + type + "Btn");
 
         if (val === type) {

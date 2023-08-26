@@ -72,8 +72,8 @@
             <div class="column is-4" v-for="(a, i) in searchedDataList" :key="i">
                 <img :src="a.img" class="is-square" style="border: 1px solid black" @click="showDetailImg(a)" />
                 <div class="columns">
-                    <div class="column">{{ a.title }}</div>
-                    <div class="column" style="text-align: right">♥{{ a.likeCount }}</div>
+                    <div class="column" style="font-size: 20px">{{ a.title }}</div>
+                    <div class="column" style="text-align: right; font-size: 20px">♥ {{ a.likeCount }}</div>
                 </div>
             </div>
             <!-- <div class="column">
