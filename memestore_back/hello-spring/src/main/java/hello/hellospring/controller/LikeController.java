@@ -4,7 +4,6 @@ import hello.hellospring.domain.LikeMeme;
 import hello.hellospring.domain.MyMessage;
 import hello.hellospring.service.LikeService;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;

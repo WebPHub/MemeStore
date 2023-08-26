@@ -1,8 +1,8 @@
 <template>
     <LoginNav />
-    <div class="hero-body center has-text-centered" style="display: flex">
-        <div class="login" style="margin: auto">
-            <img src="../assets/memestore_logo.png" width="134" height="34" />
+    <div class="hero-body center has-text-centered" style="display: flex margin:0 auto;">
+        <div class="login">
+            <img src="../assets/memestore_logo.png" width="134" height="34" style="margin-bottom: 50px" />
             <div class="field" style="width: 500px">
                 <div class="control">
                     <input id="username" class="input is-medium is-rounded" type="text" placeholder="이름" />
