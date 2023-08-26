@@ -129,6 +129,16 @@
             >
                 T
             </button>
+
+            <div id="alignleftBtn" class="button is-responsive" v-on:click="setTextAlign('left')">
+                <img src="../assets/align-left.png" class="is-square" />
+            </div>
+            <div id="aligncenterBtn" class="button is-responsive" v-on:click="setTextAlign('center')">
+                <img src="../assets/align-center.png" class="is-square" />
+            </div>
+            <div id="alignrightBtn" class="button is-responsive" v-on:click="setTextAlign('right')">
+                <img src="../assets/align-right.png" class="is-square" />
+            </div>
         </div>
         <div id="memepaintbg">
             <div id="memepaint" ref="memecapture"></div>
@@ -489,6 +499,7 @@
             fontSize: nowFontSize.value,
             fontColor: colorPickBtn.value,
             isStyleOn: [false, false, false],
+            textAlign: "left",
         });
         memePaint.appendChild(textField);
         textField.focus();
@@ -561,6 +572,28 @@
         }
     };
 
+    const setTextAlign = (data) => {
+        //Bold, Italic, Under
+        setTextAlignBtn("left", data);
+        setTextAlignBtn("center", data);
+        setTextAlignBtn("right", data);
+        if (lastTextField != null) {
+            let targetTb = getTargetData(lastTextField);
+            targetTb.textAlign = data;
+            changeTextFontStyle();
+        }
+    };
+
+    const setTextAlignBtn = (type, val) => {
+        let btn = document.getElementById("align" + type + "Btn");
+
+        if (val === type) {
+            btn.style.backgroundColor = "lightgray";
+        } else {
+            btn.style.backgroundColor = "white";
+        }
+    };
+
     //현재 포커스가 맞춰진 텍스트필드에 속성 적용
     const changeTextFontStyle = () => {
         let myFontFamily = "";
@@ -581,6 +614,8 @@
             targetTb.isStyleOn[2]
                 ? (lastTextField.style.textDecoration = "underline")
                 : (lastTextField.style.textDecoration = "");
+
+            lastTextField.style.textAlign = targetTb.textAlign;
 
             startCustomEvent(lastTextField, "keyup");
         }
@@ -756,12 +791,17 @@
         input {
             margin-right: 50px;
         }
-        button {
+        #styleBoldBtn {
             margin-right: 10px;
-
-            #styleUnderBtn {
-                margin-right: 50px;
-            }
+        }
+        #styleItalicBtn {
+            margin-right: 10px;
+        }
+        #styleUnderBtn {
+            margin-right: 50px;
+        }
+        div .button {
+            margin-right: 10px;
         }
     }
 

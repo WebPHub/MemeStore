@@ -24,16 +24,20 @@
                     <div class="control has-icons-left has-icons-right">
                         <input id="userpassword" class="input" type="password" placeholder="비밀번호" />
                         <span class="icon is-small is-left">
-                            <i class="fa fa-envelope"></i>
+                            <i class="fa-solid fa-lock"></i>
                         </span>
                     </div>
                     <!-- <p class="help is-danger"></p> -->
                 </div>
                 <div class="field">
                     <label class="label">비밀번호확인</label>
-                    <div class="control">
+                    <div class="control has-icons-left has-icons-right">
                         <input id="checkpassword" class="input" type="password" placeholder="비밀번호 확인" />
+                        <span class="icon is-small is-left">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
                     </div>
+                    <!-- <p class="help is-danger"></p> -->
                 </div>
                 <div class="field is-grouped">
                     <div class="control">
