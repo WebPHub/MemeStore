@@ -1,4 +1,7 @@
 # MemeStore
+<p align="center">
+  <img src="ex-memestore.gif" alt="memestore 예시자료"><br>
+</p><br>
 목적<br>
 주의사항<br>
 요구사항<br>
