@@ -6,9 +6,11 @@
   - 누구나 쉽게 밈을 제작할 수 있는 기회를 제공하는 Memestore을 제작하자.
 
 ## 2. 요구사항
-  - H2 DB 설치 필요
-    > [H2 Database Archive](https://www.h2database.com/html/download-archive.html)
-  - Visual Studio Code에서 Spring Boot Extension 설치 필요
+  - 이 프로젝트는 H2를 데이터베이스로 사용하였습니다. 원활하게 실행하기 위해 H2 DB 설치가 필요합니다.
+    - [H2 Database Archive](https://www.h2database.com/html/download-archive.html)
+  - 이 프로젝트는 Spring Boot로 개발되었습니다. VSC에서 원활하게 실행하기 위해 다음 Extension들을 설치해야 합니다.
+    1. [Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) 
+    2. [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
     
 ## 3. 실행방법
   - 3-1 git clone https://github.com/WebPHub/MemeStore
